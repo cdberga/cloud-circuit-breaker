@@ -12,14 +12,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 @SpringBootApplication
 public class ReadingApplication {
 
-  @RequestMapping("/to-read")
-    public Mono<String> toRead() {
-      return WebClient.builder().build()
-      .get().uri("http://localhost:8090/recommended").retrieve()
-      .bodyToMono(String.class);
-  }
+	@RequestMapping("/to-read")
+	public Mono<String> toRead() {
+		return bookService.readingList();
+	}
 
-  public static void main(String[] args) {
-    SpringApplication.run(ReadingApplication.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(ReadingApplication.class, args);
+	}
 }
